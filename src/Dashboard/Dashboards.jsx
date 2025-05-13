@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import DashboardNavbar from "../Components/DashNavbar";
 
-import Footer from "../Components/Footer";
-
 const DashboardCard = ({ title, description, color, icon, onClick }) => {
   const colors = {
-    blue: "from-blue-500 to-blue-600",
+    gray: "from-gray-500 to-gray-600",
     green: "from-green-500 to-green-600",
     purple: "from-purple-500 to-purple-600",
     yellow: "from-yellow-500 to-yellow-600",
+    cyan : "from-cyan-700 to-cyan-800",
+    blue : "from-blue-500 to-blue-600"
   };
 
   return (
@@ -86,9 +86,16 @@ export default function Dashboards() {
     {
       title: "Upload Document",
       description: "Upload and process new legal documents",
-      color: "blue",
+      color: "gray",
       icon: "📄",
       route: "/uploadDocument"
+    },
+    {
+      title: "Manage Documents",
+      description: "View, edit and organize your documents",
+      color: "gray",
+      icon: "🗂️",
+      route: "/manageDocuments"
     },
     {
       title: "Upload Notice",
@@ -97,19 +104,27 @@ export default function Dashboards() {
       icon: "📢",
       route: "/uploadNotice"
     },
-    {
-      title: "Manage Documents",
-      description: "View, edit and organize your documents",
-      color: "purple",
-      icon: "🗂️",
-      route: "/manageDocuments"
-    },
+    
     {
       title: "Manage Notices",
       description: "Track and update your legal notices",
-      color: "yellow",
+      color: "green",
       icon: "📋",
       route: "/manageNotices"
+    },
+    {
+      title: "Upload PYQs",
+      description: "Upload Previous Year Paper. ",
+      color: "cyan",
+      icon: "📋",
+      route: "/UploadPYQs"
+    },
+    {
+      title: "Manage PYQs",
+      description: "View and Edit Previous Year Paper. ",
+      color: "cyan",
+      icon: "📋",
+      route: "/ManagePYQs"
     }
   ];
 
@@ -130,7 +145,7 @@ export default function Dashboards() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Legal Management <span className="text-blue-600">Dashboard</span>
+            Legal Management <span className="text-lime-700">Dashboard</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Streamline your legal document workflow with powerful tools

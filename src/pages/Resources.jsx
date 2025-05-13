@@ -24,6 +24,14 @@ const Resources = () => {
   const [allDocuments, setAllDocuments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [pyqSearchData, setPyqSearchData] = useState({
+    course: "",
+    semester: ""
+  });
+
+  const [pyqResults, setPyqResults] = useState([]);
+  const [isSearchingPYQ, setIsSearchingPYQ] = useState(false);
+
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
@@ -65,6 +73,34 @@ const Resources = () => {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handlePyqInputChange = (e) => {
+    const { name, value } = e.target;
+    setPyqSearchData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handlePYQSearch = async (e) => {
+    e.preventDefault();
+    setIsSearchingPYQ(true);
+
+    try {
+      const response = await axios.get("http://localhost:5000/api/user-pyq", {
+        params: {
+          course: pyqSearchData.course,
+          semester: pyqSearchData.semester,
+          type: "PYQ"
+        }
+      });
+      setPyqResults(response.data || []);
+    } catch (error) {
+      console.error("PYQ Search Error:", error);
+    } finally {
+      setIsSearchingPYQ(false);
+    }
   };
 
   const container = {
@@ -114,7 +150,9 @@ const Resources = () => {
           <div className="w-8" />
         </motion.div>
 
+        {/* General Search Form */}
         <motion.div variants={item} className="bg-white rounded-2xl shadow-xl p-6 mb-8">
+          <h2 className="text-lg font-semibold text-gray-700 mb-4">Search Notes</h2>
           <form onSubmit={handleSearch} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="relative">
@@ -166,22 +204,15 @@ const Resources = () => {
             </div>
           </form>
         </motion.div>
+    {/* General Search Results */}
 
-        <motion.div variants={item}>
+  <motion.div variants={item}>
           {isLoading ? (
             <div className="flex justify-center py-20">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 className="w-12 h-12 border-4 border-gray-900 border-t-transparent rounded-full"
-              />
-            </div>
-          ) : isSearching ? (
-            <div className="flex justify-center py-20">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"
               />
             </div>
           ) : searchResults.length > 0 ? (
@@ -241,6 +272,106 @@ const Resources = () => {
             </motion.div>
           )}
         </motion.div>
+
+        {/* PYQ Search Form */}
+        <motion.div variants={item} className="bg-white rounded-2xl shadow-xl p-6 mb-8 mt-10">
+          <h2 className="text-lg font-semibold text-gray-700 mb-4">Search PYQs</h2>
+          <form onSubmit={handlePYQSearch} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="relative">
+                <FiBook className="absolute left-3 top-3 text-gray-400" />
+                <select
+                  name="course"
+                  value={pyqSearchData.course}
+                  onChange={handlePyqInputChange}
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-500"
+                >
+                  <option value="">All Courses</option>
+                  {Object.keys(courses).map((course) => (
+                    <option key={course} value={course}>
+                      {course}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="relative">
+                <FiLayers className="absolute left-3 top-3 text-gray-400" />
+                <select
+                  name="semester"
+                  value={pyqSearchData.semester}
+                  onChange={handlePyqInputChange}
+                  disabled={!pyqSearchData.course}
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-500 disabled:opacity-50"
+                >
+                  <option value="">All Semesters</option>
+                  {(courses[pyqSearchData.course] || []).map((sem) => (
+                    <option key={sem} value={sem}>
+                      Semester {sem}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="flex justify-end">
+              <motion.button
+                type="submit"
+                disabled={isSearchingPYQ}
+                className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors flex items-center"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {isSearchingPYQ ? "Searching..." : "Search"}
+              </motion.button>
+            </div>
+          </form>
+        </motion.div>
+
+    
+      
+
+        {/* PYQ Search Results */}
+        {pyqResults.length > 0 && (
+          <motion.div variants={item} className="mt-12">
+            <h2 className="text-xl font-semibold text-gray-700 mb-4">
+              PYQs Found: {pyqResults.length}
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {pyqResults.map((doc) => (
+                <motion.div
+                  key={doc._id}
+                  variants={item}
+                  whileHover={{ y: -5 }}
+                  className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100"
+                >
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">{doc.subjectName}</h3>
+                    <div className="flex items-center text-sm text-gray-600 mb-4">
+                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">
+                        {doc.courseName}
+                      </span>
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded">
+                        Sem {doc.semester}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <motion.a
+                        href={doc.fileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center text-blue-600 hover:text-blue-800"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <FiEye className="mr-1" /> View
+                      </motion.a>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </motion.main>
 
       <Footer />

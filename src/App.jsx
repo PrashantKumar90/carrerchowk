@@ -11,6 +11,8 @@ import UploadDocument from "./Dashboard/UploadDocument";
 import UploadNotice from "./Dashboard/UploadNotice";
 import ManageDocuments from "./Dashboard/ManageDocuments";
 import ManageNotices from "./Dashboard/ManageNotices";
+import UploadPYQ from "./Dashboard/UploadPYQ";
+import ManagePYQs from "./Dashboard/ManagePYQs"
 import PrivateRoute from "./utils/PrivateRoute";  // Import PrivateRoute
 
 function App() {
@@ -45,7 +47,14 @@ function App() {
           path="/manageNotices" 
           element={<PrivateRoute><ManageNotices /></PrivateRoute>} 
         />
-        
+        <Route 
+          path="/UploadPYQs" 
+          element={<PrivateRoute><UploadPYQ /></PrivateRoute>} 
+        /> 
+        <Route
+        path="/ManagePYQs"
+        element={<PrivateRoute><ManagePYQs/></PrivateRoute>}
+></Route>
       </Routes>
     </Router>
   );

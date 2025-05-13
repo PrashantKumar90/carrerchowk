@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiUpload, FiArrowLeft, FiAlertTriangle, FiCheck, FiX } from "react-icons/fi";
 import DashboardNavbar from "../Components/DashNavbar";
-import Footer from "../Components/Footer";
+
 import { useNavigate } from "react-router-dom";
 
 export default function UploadNotice({ setView }) {
