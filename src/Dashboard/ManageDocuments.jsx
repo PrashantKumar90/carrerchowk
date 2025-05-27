@@ -32,7 +32,7 @@ export default function ManageDocuments() {
     const fetchDocuments = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.post("http://localhost:5000/api/manage", {
+        const response = await axios.post("https://carrerchowk-backend.onrender.com/api/manage", {
           courseName: selectedCourse,
           semester: selectedSemester,
         });
@@ -232,7 +232,7 @@ export default function ManageDocuments() {
                             console.log("Delete button clicked"); // Check if this logs
                             try {
                               const response = await fetch(
-                                "http://localhost:5000/api/manage/delete",
+                                "https://carrerchowk-backend.onrender.com/api/manage/delete",
                                 {
                                   method: "POST",
                                   headers: {

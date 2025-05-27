@@ -28,7 +28,7 @@ export default function UploadPYQ() {
     try {
       setIsUploading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/uploadpyq/",
+        "https://carrerchowk-backend.onrender.com/api/uploadpyq/",
         {
           courseName: course,
           semester,

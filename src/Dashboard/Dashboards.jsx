@@ -62,7 +62,7 @@ export default function Dashboards() {
         }
 
         // Check token validity via API (optional for extra security)
-        const res = await fetch("http://localhost:5000/api/dashboard", {
+        const res = await fetch("https://carrerchowk-backend.onrender.com/api/dashboard", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

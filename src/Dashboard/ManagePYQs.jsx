@@ -32,7 +32,7 @@ export default function ManageDocuments() {
     const fetchDocuments = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.post("http://localhost:5000/api/managepyq", {
+        const response = await axios.post("https://carrerchowk-backend.onrender.com/api/managepyq", {
           courseName: selectedCourse,
           semester: selectedSemester,
         });

@@ -35,7 +35,7 @@ const Resources = () => {
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/documents");
+        const response = await axios.get("https://carrerchowk-backend.onrender.com/api/documents");
         setAllDocuments(response.data.documents || []);
         setIsLoading(false);
       } catch (error) {
@@ -52,7 +52,7 @@ const Resources = () => {
     setIsSearching(true);
 
     try {
-      const response = await axios.get("http://localhost:5000/api/documents", {
+      const response = await axios.get("https://carrerchowk-backend.onrender.com/api/documents", {
         params: {
           query: searchData.query,
           course: searchData.course,
@@ -88,7 +88,7 @@ const Resources = () => {
     setIsSearchingPYQ(true);
 
     try {
-      const response = await axios.get("http://localhost:5000/api/user-pyq", {
+      const response = await axios.get("https://carrerchowk-backend.onrender.com/api/user-pyq", {
         params: {
           course: pyqSearchData.course,
           semester: pyqSearchData.semester,

@@ -53,7 +53,7 @@ export default function UploadDocument() {
     try {
       setIsUploading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/upload/",
+        "https://carrerchowk-backend.onrender.com/api/upload/",
         {
           courseName: course,
           semester: semester,
