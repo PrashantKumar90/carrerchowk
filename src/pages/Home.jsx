@@ -106,13 +106,7 @@ const Home = () => {
               students across institutions
             </motion.p>
 
-            <motion.div
-              variants={item}
-              className="text-xl md:text-3xl mb-10 max-w-4xl mx-auto  text-black"
-            >
-              Why To Go SomeWhere Else ??? <br/>
-              If You Have Something Best !!!
-            </motion.div>
+            
           </motion.div>
         </section>
 
