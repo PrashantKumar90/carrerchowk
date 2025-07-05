@@ -68,19 +68,20 @@ export default function ManageDocuments() {
   }, [selectedCourse, selectedSemester]); // Trigger fetching when course or semester changes
 
   // Update available semesters when course changes
-  useEffect(() => {
-    if (selectedCourse === "All") {
-      setAvailableSemesters(["All"]);
-      setSelectedSemester("All");
-    } else {
-      const semestersForCourse = [
-        "All",
-        ...courses[selectedCourse].map((s) => s.toString()),
-      ];
-      setAvailableSemesters(semestersForCourse);
-      setSelectedSemester("All");
-    }
-  }, [selectedCourse]);
+ useEffect(() => {
+  if (selectedCourse === "BE - Electric Eng") {
+    const semestersForCourse = [
+      "All",
+      ...courses[selectedCourse].map((s) => s.toString()),
+    ];
+    setAvailableSemesters(semestersForCourse);
+    setSelectedSemester("All");
+  } else {
+    setAvailableSemesters([]);
+    setSelectedSemester("All");
+  }
+}, [selectedCourse]);
+
 
   // Pagination
   const docsPerPage = 5;
@@ -145,39 +146,42 @@ export default function ManageDocuments() {
 
         {/* Search & Filters */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="bg-white rounded-xl shadow-md p-4 mb-6"
-        >
-          <div className="flex flex-col md:flex-row gap-4 items-center">
-            {/* Course Filter */}
-            <select
-              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-800 outline-none transition-all"
-              value={selectedCourse}
-              onChange={(e) => setSelectedCourse(e.target.value)}
-            >
-              {courseOptions.map((course) => (
-                <option key={course} value={course}>
-                  {course}
-                </option>
-              ))}
-            </select>
-            {/* Semester Filter */}
-            <select
-              className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-800 outline-none transition-all"
-              value={selectedSemester}
-              onChange={(e) => setSelectedSemester(e.target.value)}
-              disabled={selectedCourse === "All"}
-            >
-              {availableSemesters.map((sem) => (
-                <option key={sem} value={sem}>
-                  {sem}
-                </option>
-              ))}
-            </select>
-          </div>
-        </motion.div>
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.2 }}
+  className="bg-white rounded-xl shadow-md p-4 mb-6"
+>
+  <div className="flex flex-col md:flex-row gap-4 items-center">
+    {/* Course Filter */}
+    <select
+      className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-800 outline-none transition-all"
+      value={selectedCourse}
+      onChange={(e) => setSelectedCourse(e.target.value)}
+    >
+      {courseOptions.map((course) => (
+        <option key={course} value={course}>
+          {course}
+        </option>
+      ))}
+    </select>
+
+    {/* Semester Filter (only if BE is selected) */}
+    {selectedCourse === "BE - Electric Eng" && (
+      <select
+        className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-800 outline-none transition-all"
+        value={selectedSemester}
+        onChange={(e) => setSelectedSemester(e.target.value)}
+      >
+        {availableSemesters.map((sem) => (
+          <option key={sem} value={sem}>
+            {sem}
+          </option>
+        ))}
+      </select>
+    )}
+  </div>
+</motion.div>
+
 
         {/* Documents Table */}
         <motion.div

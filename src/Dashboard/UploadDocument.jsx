@@ -38,13 +38,11 @@ export default function UploadDocument() {
   };
 
   const handleSubmit = async () => {
-    // Validate all fields
-    if (!course || !semester || !subject || !url) {
+    if (!course || (course === "BE - Electric Eng" && !semester) || !subject || !url) {
       showNotification('error', 'Please fill all fields');
       return;
     }
 
-    // Validate Google Drive URL
     if (!validateGoogleDriveUrl(url)) {
       showNotification('error', 'Please enter a valid Google Drive URL');
       return;
@@ -56,7 +54,7 @@ export default function UploadDocument() {
         "https://carrerchowk-backend.onrender.com/api/upload/",
         {
           courseName: course,
-          semester: semester,
+          semester: course === "BE - Electric Eng" ? semester : "N/A",
           subjectName: subject,
           fileUrl: url
         },
@@ -69,7 +67,6 @@ export default function UploadDocument() {
 
       if (response.status === 201) {
         showNotification('success', 'Document uploaded successfully!');
-        // Reset form
         setCourse("");
         setSemester("");
         setSubject("");
@@ -86,12 +83,11 @@ export default function UploadDocument() {
     }
   };
 
-  // Available courses and their respective semesters
   const courses = {
     "BE - Electric Eng": [1, 2, 3, 4, 5, 6, 7, 8],
-    NEC: [1], // Syllabu & Notice
-    NEA : [1], // Vac Notice & Syll
-    PSC : [1] // Notice 
+    NEC: [1],
+    NEA: [1],
+    PSC: [1]
   };
 
   return (
@@ -103,7 +99,6 @@ export default function UploadDocument() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Notification */}
         {notification && (
           <motion.div
             initial={{ y: -50, opacity: 0 }}
@@ -155,7 +150,7 @@ export default function UploadDocument() {
                 value={course}
                 onChange={(e) => {
                   setCourse(e.target.value);
-                  setSemester(""); // Reset semester when course changes
+                  setSemester("");
                 }}
                 className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-700 focus:gray-blue-500"
                 required
@@ -169,25 +164,25 @@ export default function UploadDocument() {
               </select>
             </div>
 
-            {/* Semester Selection */}
-            <div className="relative">
-              <FiLayers className="absolute left-3 top-3 text-gray-400" />
-              <select
-                value={semester}
-                onChange={(e) => setSemester(e.target.value)}
-                disabled={!course}
-                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-gray-500 disabled:opacity-50"
-                required
-              >
-                <option value="">Select Semester</option>
-                {course &&
-                  courses[course].map((sem) => (
+            {/* Semester Selection — Only show if BE is selected */}
+            {course === "BE - Electric Eng" && (
+              <div className="relative">
+                <FiLayers className="absolute left-3 top-3 text-gray-400" />
+                <select
+                  value={semester}
+                  onChange={(e) => setSemester(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-gray-500"
+                  required
+                >
+                  <option value="">Select Semester</option>
+                  {courses["BE - Electric Eng"].map((sem) => (
                     <option key={sem} value={sem}>
                       Semester {sem}
                     </option>
                   ))}
-              </select>
-            </div>
+                </select>
+              </div>
+            )}
 
             {/* Subject Input */}
             <div className="relative">

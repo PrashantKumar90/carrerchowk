@@ -19,9 +19,23 @@ export default function UploadPYQ() {
     setTimeout(() => setNotification(null), 5000);
   };
 
+  const validateGoogleDriveUrl = (url) => {
+    try {
+      const parsed = new URL(url);
+      return parsed.hostname.includes("drive.google.com");
+    } catch {
+      return false;
+    }
+  };
+
   const handleSubmit = async () => {
     if (!course || !semester || !subject || !url) {
       showNotification("error", "Please fill all fields");
+      return;
+    }
+
+    if (!validateGoogleDriveUrl(url)) {
+      showNotification("error", "Please enter a valid Google Drive URL");
       return;
     }
 
@@ -76,6 +90,7 @@ export default function UploadPYQ() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
+        {/* Notification */}
         {notification && (
           <motion.div
             initial={{ y: -50, opacity: 0 }}
@@ -137,24 +152,24 @@ export default function UploadPYQ() {
             </div>
 
             {/* Semester Selection */}
-            <div className="relative">
-              <FiLayers className="absolute left-3 top-3 text-gray-400" />
-              <select
-                value={semester}
-                onChange={(e) => setSemester(e.target.value)}
-                disabled={!course}
-                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-gray-500 disabled:opacity-50"
-                required
-              >
-                <option value="">Select Semester</option>
-                {course &&
-                  courses[course].map((sem) => (
+            {course && (
+              <div className="relative">
+                <FiLayers className="absolute left-3 top-3 text-gray-400" />
+                <select
+                  value={semester}
+                  onChange={(e) => setSemester(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-gray-500"
+                  required
+                >
+                  <option value="">Select Semester</option>
+                  {courses[course].map((sem) => (
                     <option key={sem} value={sem}>
                       Semester {sem}
                     </option>
                   ))}
-              </select>
-            </div>
+                </select>
+              </div>
+            )}
 
             {/* Subject Input */}
             <div className="relative">
@@ -180,6 +195,9 @@ export default function UploadPYQ() {
                 className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-gray-500"
                 required
               />
+              <div className="text-xs text-gray-500 mt-1">
+                Only Google Drive URLs are accepted
+              </div>
             </div>
 
             {/* Upload Button */}
