@@ -105,6 +105,12 @@ const Home = () => {
               Discover, share and download the best study resources from top
               students across institutions
             </motion.p>
+
+            <motion.div
+              variants={item}
+              className="flex flex-col sm:flex-row justify-center gap-4"
+            >
+            </motion.div>
           </motion.div>
         </section>
 
