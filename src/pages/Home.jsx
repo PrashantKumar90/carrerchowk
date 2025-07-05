@@ -108,7 +108,7 @@ const Home = () => {
 
             <motion.div
               variants={item}
-              className="flex flex-col sm:flex-row justify-center gap-4"
+              className="text-xl md:text-3xl mb-10 max-w-4xl mx-auto  text-black"
             >
               Why To Go SomeWhere Else ??? <br/>
               If You Have Something Best !!!
