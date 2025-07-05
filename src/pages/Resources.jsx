@@ -7,10 +7,10 @@ import { FiEye, FiBook, FiLayers, FiArrowLeft, FiFile } from "react-icons/fi";
 
 const Resources = () => {
   const courses = {
-    "B.Tech": [1, 2, 3, 4, 5, 6, 7, 8],
-    "BCA": [1, 2, 3, 4, 5, 6],
-    "BBA": [1, 2, 3, 4, 5, 6],
-    "MBA": [1, 2, 3, 4]
+    "BE-Electrical Eng": [1, 2, 3, 4, 5, 6, 7, 8],
+    NEC: [1, 2, 3, 4, 5, 6], // Syllabus & notes
+    PSC : [1],
+    NEA : [1]
   };
 
   const [searchData, setSearchData] = useState({

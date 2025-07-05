@@ -8,10 +8,10 @@ import axios from "axios";
 export default function ManageDocuments() {
   // Available courses and their respective semesters
   const courses = {
-    "B.Tech": [1, 2, 3, 4, 5, 6, 7, 8],
-    BCA: [1, 2, 3, 4, 5, 6],
-    BBA: [1, 2, 3, 4, 5, 6],
-    MBA: [1, 2, 3, 4],
+    "BE - Electric Eng": [1, 2, 3, 4, 5, 6, 7, 8],
+    NEC: [1], // Syllabu & Notice
+    NEA : [1], // Vac Notice & Syll
+    PSC : [1] // Notice 
   };
 
   // State management
@@ -232,7 +232,7 @@ export default function ManageDocuments() {
                             console.log("Delete button clicked"); // Check if this logs
                             try {
                               const response = await fetch(
-                                "http://localhost:5000/api/managepyq/delete",
+                                "https://carrerchowk-backend.onrender.com/api/managepyq/delete",
                                 {
                                   method: "POST",
                                   headers: {

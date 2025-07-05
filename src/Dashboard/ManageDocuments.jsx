@@ -7,11 +7,11 @@ import axios from "axios";
 
 export default function ManageDocuments() {
   // Available courses and their respective semesters
-  const courses = {
-    "B.Tech": [1, 2, 3, 4, 5, 6, 7, 8],
-    BCA: [1, 2, 3, 4, 5, 6],
-    BBA: [1, 2, 3, 4, 5, 6],
-    MBA: [1, 2, 3, 4],
+ const courses = {
+    "BE - Electric Eng": [1, 2, 3, 4, 5, 6, 7, 8],
+    NEC: [1], // Syllabu & Notice
+    NEA : [1], // Vac Notice & Syll
+    PSC : [1] // Notice 
   };
 
   // State management
@@ -280,7 +280,7 @@ export default function ManageDocuments() {
           <div className="flex justify-between items-center p-4">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
               disabled={currentPage === 1}
             >
               Previous
@@ -292,7 +292,7 @@ export default function ManageDocuments() {
               onClick={() =>
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
               disabled={currentPage === totalPages}
             >
               Next

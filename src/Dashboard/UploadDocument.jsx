@@ -88,10 +88,10 @@ export default function UploadDocument() {
 
   // Available courses and their respective semesters
   const courses = {
-    "B.Tech": [1, 2, 3, 4, 5, 6, 7, 8],
-    "BCA": [1, 2, 3, 4, 5, 6],
-    "BBA": [1, 2, 3, 4, 5, 6],
-    "MBA": [1, 2, 3, 4]
+    "BE - Electric Eng": [1, 2, 3, 4, 5, 6, 7, 8],
+    NEC: [1], // Syllabu & Notice
+    NEA : [1], // Vac Notice & Syll
+    PSC : [1] // Notice 
   };
 
   return (
