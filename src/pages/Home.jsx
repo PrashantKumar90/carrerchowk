@@ -110,6 +110,8 @@ const Home = () => {
               variants={item}
               className="flex flex-col sm:flex-row justify-center gap-4"
             >
+              Why To Go SomeWhere Else ??? <br/>
+              If You Have Something Best !!!
             </motion.div>
           </motion.div>
         </section>
