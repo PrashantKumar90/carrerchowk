@@ -105,27 +105,6 @@ const Home = () => {
               Discover, share and download the best study resources from top
               students across institutions
             </motion.p>
-
-            <motion.div
-              variants={item}
-              className="flex flex-col sm:flex-row justify-center gap-4"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-yellow-400 text-blue-900 px-8 py-4 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all"
-              >
-                Explore Resources
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-transparent border-2 border-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-gray-500 hover:bg-opacity-10 transition-all"
-              >
-                How It Works
-              </motion.button>
-            </motion.div>
           </motion.div>
         </section>
 
