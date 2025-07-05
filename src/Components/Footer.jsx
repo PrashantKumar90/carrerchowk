@@ -46,6 +46,14 @@ const Footer = () => {
     { icon: "📞", text: "+977 9864215329" },
     { icon: "🏢", text: "Nepal Polytechnic Institute, Mahendra Highway, Bharatpur 44207, Nepal" }
   ];
+  
+
+  //This would be change when the Links will abvailable
+   const impLink = [
+    {  text: "sahroshan221@gmail.com" },
+    {  text: "+977 9864215329" },
+    {  text: "Nepal Polytechnic Institute, Mahendra Highway, Bharatpur 44207, Nepal" }
+  ];
 
   return (
     <motion.footer 
