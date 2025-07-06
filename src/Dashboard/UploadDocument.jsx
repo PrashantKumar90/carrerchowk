@@ -38,7 +38,7 @@ export default function UploadDocument() {
   };
 
   const handleSubmit = async () => {
-    if (!course || (course === "BE - Electric Eng" && !semester) || !subject || !url) {
+    if (!course || (course === "BE - Electrical Eng" && !semester) || !subject || !url) {
       showNotification('error', 'Please fill all fields');
       return;
     }
@@ -54,7 +54,7 @@ export default function UploadDocument() {
         "https://carrerchowk-backend.onrender.com/api/upload/",
         {
           courseName: course,
-          semester: course === "BE - Electric Eng" ? semester : "N/A",
+          semester: course === "BE - Electrical Eng" ? semester : "N/A",
           subjectName: subject,
           fileUrl: url
         },
@@ -175,7 +175,7 @@ export default function UploadDocument() {
                   required
                 >
                   <option value="">Select Semester</option>
-                  {courses["BE - Electric Eng"].map((sem) => (
+                  {courses["BE - Electrical Eng"].map((sem) => (
                     <option key={sem} value={sem}>
                       Semester {sem}
                     </option>
