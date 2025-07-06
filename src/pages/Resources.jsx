@@ -132,16 +132,7 @@ const Resources = () => {
           <h2 className="text-lg font-semibold text-gray-700 mb-4">Search Notes</h2>
           <form onSubmit={handleSearch} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="relative">
-                <input
-                  type="text"
-                  name="query"
-                  value={searchData.query}
-                  onChange={handleInputChange}
-                  placeholder="Enter subject or keyword"
-                  className="w-full pl-4 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-500"
-                />
-              </div>
+            
 
               <div className="relative">
                 <FiBook className="absolute left-3 top-3 text-gray-400" />
