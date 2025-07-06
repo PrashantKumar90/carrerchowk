@@ -84,7 +84,7 @@ export default function UploadDocument() {
   };
 
   const courses = {
-    "BE - Electric Eng": [1, 2, 3, 4, 5, 6, 7, 8],
+    "BE - Electrical Eng": [1, 2, 3, 4, 5, 6, 7, 8],
     NEC: [1],
     NEA: [1],
     PSC: [1]
@@ -165,7 +165,7 @@ export default function UploadDocument() {
             </div>
 
             {/* Semester Selection — Only show if BE is selected */}
-            {course === "BE - Electric Eng" && (
+            {course === "BE - Electrical Eng" && (
               <div className="relative">
                 <FiLayers className="absolute left-3 top-3 text-gray-400" />
                 <select

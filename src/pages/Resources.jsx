@@ -7,16 +7,16 @@ import { FiEye, FiBook, FiLayers, FiArrowLeft, FiFile } from "react-icons/fi";
 
 const Resources = () => {
   const courses = {
-    "BE-Electrical Eng": [1, 2, 3, 4, 5, 6, 7, 8],
-    NEC: [1], // Syllabus & notes
-    PSC : [1],
-    NEA : [1]
+    "BE - Electrical Eng": [1, 2, 3, 4, 5, 6, 7, 8],
+    NEC: [1],
+    PSC: [1],
+    NEA: [1],
   };
 
   const [searchData, setSearchData] = useState({
     query: "",
     course: "",
-    semester: ""
+    semester: "",
   });
 
   const [searchResults, setSearchResults] = useState([]);
@@ -26,7 +26,7 @@ const Resources = () => {
 
   const [pyqSearchData, setPyqSearchData] = useState({
     course: "",
-    semester: ""
+    semester: "",
   });
 
   const [pyqResults, setPyqResults] = useState([]);
@@ -50,14 +50,13 @@ const Resources = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     setIsSearching(true);
-
     try {
       const response = await axios.get("https://carrerchowk-backend.onrender.com/api/documents", {
         params: {
           query: searchData.query,
           course: searchData.course,
-          semester: searchData.semester
-        }
+          semester: searchData.semester,
+        },
       });
       setSearchResults(response.data || []);
     } catch (error) {
@@ -71,7 +70,7 @@ const Resources = () => {
     const { name, value } = e.target;
     setSearchData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -79,21 +78,20 @@ const Resources = () => {
     const { name, value } = e.target;
     setPyqSearchData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handlePYQSearch = async (e) => {
     e.preventDefault();
     setIsSearchingPYQ(true);
-
     try {
       const response = await axios.get("https://carrerchowk-backend.onrender.com/api/user-pyq", {
         params: {
           course: pyqSearchData.course,
           semester: pyqSearchData.semester,
-          type: "PYQ"
-        }
+          type: "PYQ",
+        },
       });
       setPyqResults(response.data || []);
     } catch (error) {
@@ -108,9 +106,9 @@ const Resources = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const item = {
@@ -120,9 +118,9 @@ const Resources = () => {
       opacity: 1,
       transition: {
         type: "spring",
-        stiffness: 100
-      }
-    }
+        stiffness: 100,
+      },
+    },
   };
 
   return (
@@ -172,23 +170,24 @@ const Resources = () => {
                 </select>
               </div>
 
-              <div className="relative">
-                <FiLayers className="absolute left-3 top-3 text-gray-400" />
-                <select
-                  name="semester"
-                  value={searchData.semester}
-                  onChange={handleInputChange}
-                  disabled={!searchData.course}
-                  className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-500 disabled:opacity-50"
-                >
-                  <option value="">All Semesters</option>
-                  {(courses[searchData.course] || []).map((sem) => (
-                    <option key={sem} value={sem}>
-                      Semester {sem}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {searchData.course === "BE - Electrical Eng" && (
+                <div className="relative">
+                  <FiLayers className="absolute left-3 top-3 text-gray-400" />
+                  <select
+                    name="semester"
+                    value={searchData.semester}
+                    onChange={handleInputChange}
+                    className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-500"
+                  >
+                    <option value="">All Semesters</option>
+                    {courses[searchData.course].map((sem) => (
+                      <option key={sem} value={sem}>
+                        Semester {sem}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
             </div>
 
             <div className="flex justify-end">
@@ -204,9 +203,9 @@ const Resources = () => {
             </div>
           </form>
         </motion.div>
-    {/* General Search Results */}
 
-  <motion.div variants={item}>
+        {/* Search Results */}
+        <motion.div variants={item}>
           {isLoading ? (
             <div className="flex justify-center py-20">
               <motion.div
@@ -295,23 +294,24 @@ const Resources = () => {
                 </select>
               </div>
 
-              <div className="relative">
-                <FiLayers className="absolute left-3 top-3 text-gray-400" />
-                <select
-                  name="semester"
-                  value={pyqSearchData.semester}
-                  onChange={handlePyqInputChange}
-                  disabled={!pyqSearchData.course}
-                  className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-500 disabled:opacity-50"
-                >
-                  <option value="">All Semesters</option>
-                  {(courses[pyqSearchData.course] || []).map((sem) => (
-                    <option key={sem} value={sem}>
-                      Semester {sem}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {pyqSearchData.course === "BE - Electrical Eng" && (
+                <div className="relative">
+                  <FiLayers className="absolute left-3 top-3 text-gray-400" />
+                  <select
+                    name="semester"
+                    value={pyqSearchData.semester}
+                    onChange={handlePyqInputChange}
+                    className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-500"
+                  >
+                    <option value="">All Semesters</option>
+                    {courses[pyqSearchData.course].map((sem) => (
+                      <option key={sem} value={sem}>
+                        Semester {sem}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
             </div>
 
             <div className="flex justify-end">
@@ -327,9 +327,6 @@ const Resources = () => {
             </div>
           </form>
         </motion.div>
-
-    
-      
 
         {/* PYQ Search Results */}
         {pyqResults.length > 0 && (

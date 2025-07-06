@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FiArrowLeft, FiBook, FiLayers, FiLink, FiUpload, FiFileText } from "react-icons/fi";
+import {
+  FiArrowLeft,
+  FiBook,
+  FiLayers,
+  FiLink,
+  FiUpload,
+  FiFileText,
+} from "react-icons/fi";
 import DashboardNavbar from "../Components/DashNavbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -75,10 +82,10 @@ export default function UploadPYQ() {
   };
 
   const courses = {
-    "B.Tech": [1, 2, 3, 4, 5, 6, 7, 8],
-    BCA: [1, 2, 3, 4, 5, 6],
-    BBA: [1, 2, 3, 4, 5, 6],
-    MBA: [1, 2, 3, 4],
+    "BE - Electrical Eng": [1, 2, 3, 4, 5, 6, 7, 8],
+    NEC: [1],
+    NEA: [1],
+    PSC: [1],
   };
 
   return (
@@ -151,8 +158,8 @@ export default function UploadPYQ() {
               </select>
             </div>
 
-            {/* Semester Selection */}
-            {course && (
+            {/* Semester Selection — Only for "BE - Electrical Eng" */}
+            {course === "BE - Electrical Eng" && (
               <div className="relative">
                 <FiLayers className="absolute left-3 top-3 text-gray-400" />
                 <select
