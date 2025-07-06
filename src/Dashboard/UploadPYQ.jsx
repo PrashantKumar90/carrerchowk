@@ -52,7 +52,7 @@ export default function UploadPYQ() {
         "https://carrerchowk-backend.onrender.com/api/uploadpyq/",
         {
           courseName: course,
-          semester,
+          semester : course === "BE - Electrical Eng" ? semester : "0",
           subjectName: subject,
           fileUrl: url,
         },

@@ -54,7 +54,7 @@ export default function UploadDocument() {
         "https://carrerchowk-backend.onrender.com/api/upload/",
         {
           courseName: course,
-          semester: course === "BE - Electrical Eng" ? semester : "N/A",
+          semester: course === "BE - Electrical Eng" ? semester : "0",
           subjectName: subject,
           fileUrl: url
         },
