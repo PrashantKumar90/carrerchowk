@@ -10,53 +10,57 @@ const Footer = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const item = {
     hidden: { y: 20, opacity: 0 },
-    show: { 
-      y: 0, 
+    show: {
+      y: 0,
       opacity: 1,
       transition: {
         type: "spring",
-        stiffness: 100
-      }
-    }
+        stiffness: 100,
+      },
+    },
   };
 
   const socialLinks = [
     { name: "Twitter", icon: "🐦", url: "#" },
     { name: "LinkedIn", icon: "💼", url: "#" },
     { name: "Instagram", icon: "📷", url: "#" },
-    { name: "Facebook", icon: "👍", url: "#" }
+    { name: "Facebook", icon: "👍", url: "#" },
   ];
 
   const quickLinks = [
     { name: "Home", path: "/" },
     { name: "Resources", path: "/resources" },
     { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" }
+    { name: "Contact", path: "/contact" },
   ];
 
   const contactInfo = [
-    { icon: "✉️", text: "sahroshan221@gmail.com" },
-    { icon: "📞", text: "+977 9864215329" },
-    { icon: "🏢", text: "Nepal Polytechnic Institute, Mahendra Highway, Bharatpur 44207, Nepal" }
+    { icon: "✉️", text: "carrerchowk@gmail.com" },
+    { icon: "📞", text: "+977 9817801021" },
+    {
+      icon: "🏢",
+      text: "Nepal Polytechnic Institute, Mahendra Highway, Bharatpur 44207, Nepal",
+    },
   ];
-  
 
-  //This would be change when the Links will abvailable
-   const impLink = [
-    {  text: "sahroshan221@gmail.com" },
-    {  text: "+977 9864215329" },
-    {  text: "Nepal Polytechnic Institute, Mahendra Highway, Bharatpur 44207, Nepal" }
+  //This would be change when the Links will abvailable http://nea.org.np
+  const ImpLinks = [
+    { name: "NEA", path: "http://nea.org.np" },
+    { name: "PSC", path: "http://psc.gov.np" },
+    { name: "PU Exams", path: "http://puexam.edu.np" },
+    { name: "NEC", path: "https://nec.gov.np/" },
+    { name: "MOEWRI", path: "https://moewri.gov.np/" },
   ];
 
   return (
-    <motion.footer 
+    <motion.footer
       initial="hidden"
       whileInView="show"
       variants={container}
@@ -71,9 +75,10 @@ const Footer = () => {
               CAREER-CHOWK
             </h2>
             <p className="text-blue-100">
-              Your one-stop platform for quality educational resources and study materials.
+              Your one-stop platform for quality educational resources and study
+              materials.
             </p>
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="mt-4"
@@ -92,13 +97,13 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
-                <motion.li 
+                <motion.li
                   key={index}
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Link 
-                    to={link.path} 
+                  <Link
+                    to={link.path}
                     className="text-blue-100 hover:text-white transition-colors flex items-center"
                   >
                     <span className="mr-2">→</span> {link.name}
@@ -116,7 +121,7 @@ const Footer = () => {
             </h3>
             <ul className="space-y-4">
               {contactInfo.map((info, index) => (
-                <motion.li 
+                <motion.li
                   key={index}
                   whileHover={{ x: 5 }}
                   className="flex items-start"
@@ -128,20 +133,49 @@ const Footer = () => {
             </ul>
           </motion.div>
 
+          {/* Imp Link */}
+          <motion.div variants={item}>
+            <h3 className="text-xl font-bold mb-6 text-white flex items-center">
+              <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
+              Important Links
+            </h3>
+            <ul className="space-y-3">
+              {ImpLinks.map((link, index) => (
+                <motion.li
+                  key={index}
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Link
+                    to={link.path}
+                    className="text-blue-100 hover:text-white transition-colors flex items-center"
+                  >
+                    <span className="mr-2">→</span> {link.name}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
           {/* Social Links */}
-         
         </div>
 
         {/* Copyright */}
-        <motion.div 
+        <motion.div
           variants={item}
           className="mt-12 pt-6 border-t border-blue-800 text-center text-blue-300"
         >
           <p>© {new Date().getFullYear()} CAREER-CHOWK. All rights reserved.</p>
           <div className="flex justify-center space-x-4 mt-2">
-            <a href="#" className="text-sm hover:text-white transition">Privacy Policy</a>
-            <a href="#" className="text-sm hover:text-white transition">Terms of Service</a>
-            <a href="#" className="text-sm hover:text-white transition">Cookie Policy</a>
+            <a href="#" className="text-sm hover:text-white transition">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-sm hover:text-white transition">
+              Terms of Service
+            </a>
+            <a href="#" className="text-sm hover:text-white transition">
+              Cookie Policy
+            </a>
           </div>
         </motion.div>
       </div>
