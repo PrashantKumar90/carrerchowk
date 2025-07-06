@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  FiArrowLeft,
-  FiBook,
-  FiLayers,
-  FiLink,
-  FiUpload,
-  FiFileText,
-} from "react-icons/fi";
+import { FiArrowLeft, FiBook, FiLayers, FiLink, FiUpload, FiFileText } from "react-icons/fi";
 import DashboardNavbar from "../Components/DashNavbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -52,7 +45,7 @@ export default function UploadPYQ() {
         "https://carrerchowk-backend.onrender.com/api/uploadpyq/",
         {
           courseName: course,
-          semester : course === "BE - Electrical Eng" ? semester : "0",
+          semester,
           subjectName: subject,
           fileUrl: url,
         },
@@ -158,8 +151,8 @@ export default function UploadPYQ() {
               </select>
             </div>
 
-            {/* Semester Selection — Only for "BE - Electrical Eng" */}
-            {course === "BE - Electrical Eng" && (
+            {/* Semester Selection */}
+            {course && (
               <div className="relative">
                 <FiLayers className="absolute left-3 top-3 text-gray-400" />
                 <select
