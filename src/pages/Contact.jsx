@@ -37,8 +37,8 @@ const Contact = () => {
         </svg>
       ),
       title: "Email Us",
-      detail: "sahroshan221@gmail.com",
-      action: "sahroshan221@gmail.com"
+      detail: "carrerchowk@gmail.com",
+      action: "carrerchowk@gmail.com"
     },
     {
       icon: (
@@ -47,8 +47,8 @@ const Contact = () => {
         </svg>
       ),
       title: "Call Us",
-      detail: "+977 9864215329 ",
-      action: "tel:+977 9864215329"
+      detail: "+977 9817801021 ",
+      action: "tel:+977 9817801021"
     },
     {
       icon: (
