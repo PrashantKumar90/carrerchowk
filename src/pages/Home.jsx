@@ -2,7 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { useNavigate } from "react-router-dom";
 
+
+
+
+const navigate = useNavigate();
 const Home = () => {
   // Animation variants
   const container = {
@@ -132,6 +137,7 @@ const Home = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-yellow-400 text-blue-900 px-8 py-4 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all"
+                onClick={() => navigate("/resources")}
               >
                 Get Started Now
               </motion.button>
