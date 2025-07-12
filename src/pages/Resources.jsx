@@ -127,13 +127,10 @@ const Resources = () => {
           <div className="w-8" />
         </motion.div>
 
-        {/* Notes Search Form */}
         <motion.div variants={item} className="bg-white rounded-2xl shadow-xl p-6 mb-8">
           <h2 className="text-lg font-semibold text-gray-700 mb-4">Search Notes</h2>
           <form onSubmit={handleSearch} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-
               <div className="relative">
                 <FiBook className="absolute left-3 top-3 text-gray-400" />
                 <select
@@ -185,7 +182,6 @@ const Resources = () => {
           </form>
         </motion.div>
 
-        {/* Notes Search Results */}
         <motion.div variants={item}>
           {hasSearched && (
             searchResults.length > 0 ? (
@@ -239,7 +235,6 @@ const Resources = () => {
           )}
         </motion.div>
 
-        {/* PYQ Search Form */}
         <motion.div variants={item} className="bg-white rounded-2xl shadow-xl p-6 mb-8 mt-10">
           <h2 className="text-lg font-semibold text-gray-700 mb-4">Search PYQs</h2>
           <form onSubmit={handlePYQSearch} className="space-y-4">
@@ -295,7 +290,6 @@ const Resources = () => {
           </form>
         </motion.div>
 
-        {/* PYQ Results */}
         {pyqResults.length > 0 && (
           <motion.div variants={item} className="mt-12">
             <h2 className="text-xl font-semibold text-gray-700 mb-4">PYQs Found: {pyqResults.length}</h2>

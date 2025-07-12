@@ -29,7 +29,9 @@ export default function UploadPYQ() {
   };
 
   const handleSubmit = async () => {
-    if (!course || !semester || !subject || !url) {
+    const semesterToSubmit = course === "BE - Electrical Eng" ? semester : 0;
+
+    if (!course || !subject || !url || (course === "BE - Electrical Eng" && !semester)) {
       showNotification("error", "Please fill all fields");
       return;
     }
@@ -45,7 +47,7 @@ export default function UploadPYQ() {
         "https://carrerchowk-backend.onrender.com/api/uploadpyq/",
         {
           courseName: course,
-          semester,
+          semester: semesterToSubmit,
           subjectName: subject,
           fileUrl: url,
         },
@@ -136,8 +138,13 @@ export default function UploadPYQ() {
               <select
                 value={course}
                 onChange={(e) => {
-                  setCourse(e.target.value);
-                  setSemester("");
+                  const selected = e.target.value;
+                  setCourse(selected);
+                  if (selected !== "BE - Electrical Eng") {
+                    setSemester("0");
+                  } else {
+                    setSemester("");
+                  }
                 }}
                 className="w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-gray-500"
                 required
@@ -151,8 +158,8 @@ export default function UploadPYQ() {
               </select>
             </div>
 
-            {/* Semester Selection */}
-            {course && (
+            {/* Semester Selection (Only for BE) */}
+            {course === "BE - Electrical Eng" && (
               <div className="relative">
                 <FiLayers className="absolute left-3 top-3 text-gray-400" />
                 <select

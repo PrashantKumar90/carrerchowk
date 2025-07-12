@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function ManageDocuments() {
   const courses = {
-    "BE - Electric Eng": [1, 2, 3, 4, 5, 6, 7, 8],
+    "BE - Electrical Eng": [1, 2, 3, 4, 5, 6, 7, 8],
     NEC: [1],
     NEA: [1],
     PSC: [1],
@@ -61,7 +61,7 @@ export default function ManageDocuments() {
     if (selectedCourse === "All") {
       setAvailableSemesters(["All"]);
       setSelectedSemester("All");
-    } else if (selectedCourse === "BE - Electric Eng") {
+    } else if (selectedCourse === "BE - Electrical Eng") {
       const semesters = ["All", ...courses[selectedCourse].map((s) => s.toString())];
       setAvailableSemesters(semesters);
       setSelectedSemester("All");
@@ -150,7 +150,7 @@ export default function ManageDocuments() {
             </select>
 
             {/* Semester Filter - only show if BE selected */}
-            {selectedCourse === "BE - Electric Eng" && (
+            {selectedCourse === "BE - Electrical Eng" && (
               <select
                 className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-800"
                 value={selectedSemester}
