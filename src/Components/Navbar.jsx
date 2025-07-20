@@ -9,7 +9,6 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Resources", path: "/resources" },
-    // { name: "Dashboard", path: "/dashboard" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -88,18 +87,6 @@ const Navbar = () => {
                 </Link>
               </motion.div>
             ))}
-
-            <motion.div variants={item}>
-              <Link
-                to="/login"
-                className="relative overflow-hidden group"
-              >
-                <span className="absolute inset-0 bg-white transform group-hover:scale-110 transition-transform duration-300 rounded-full"></span>
-                <span className="relative z-10 block px-7 py-2 text-gray-900 font-medium group-hover:text-gray-800 transition-colors">
-                  Login
-                </span>
-              </Link>
-            </motion.div>
           </motion.div>
 
           {/* Mobile Menu Button */}
@@ -151,18 +138,6 @@ const Navbar = () => {
                     </Link>
                   </motion.div>
                 ))}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="mt-2"
-                >
-                  <Link
-                    to="/login"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-4 py-2  bg-white text-gray-900 font-medium rounded-lg text-center hover:bg-blue-100 transition-colors"
-                  >
-                    Login
-                  </Link>
-                </motion.div>
               </div>
             </motion.div>
           )}
