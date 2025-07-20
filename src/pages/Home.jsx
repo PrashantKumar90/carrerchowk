@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 
@@ -184,5 +185,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;
