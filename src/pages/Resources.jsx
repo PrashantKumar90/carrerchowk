@@ -183,55 +183,41 @@ const Resources = () => {
         </motion.div>
 
         <motion.div variants={item}>
-          {hasSearched && (
-            searchResults.length > 0 ? (
-              <>
-                <h2 className="text-xl font-semibold text-gray-700 mb-4">
-                  Found {searchResults.length} resources
-                </h2>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {searchResults.map((doc) => (
-                    <motion.div
-                      key={doc._id}
-                      variants={item}
-                      whileHover={{ y: -5 }}
-                      className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100"
-                    >
-                      <div className="p-6">
-                        <h3 className="text-lg font-bold text-gray-800 mb-2">{doc.subjectName}</h3>
-                        <div className="flex items-center text-sm text-gray-600 mb-4">
-                          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">{doc.courseName}</span>
-                          <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Sem {doc.semester}</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <motion.a
-                            href={doc.fileUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center text-blue-600 hover:text-blue-800"
-                            whileHover={{ scale: 1.05 }}
-                          >
-                            <FiEye className="mr-1" /> View
-                          </motion.a>
-                        </div>
+          {hasSearched && searchResults.length > 0 && (
+            <>
+              <h2 className="text-xl font-semibold text-gray-700 mb-4">
+                Found {searchResults.length} resources
+              </h2>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {searchResults.map((doc) => (
+                  <motion.div
+                    key={doc._id}
+                    variants={item}
+                    whileHover={{ y: -5 }}
+                    className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100"
+                  >
+                    <div className="p-6">
+                      <h3 className="text-lg font-bold text-gray-800 mb-2">{doc.subjectName}</h3>
+                      <div className="flex items-center text-sm text-gray-600 mb-4">
+                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">{doc.courseName}</span>
+                        <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Sem {doc.semester}</span>
                       </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="bg-white rounded-2xl shadow-sm p-12 text-center"
-              >
-                <svg className="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 className="text-xl font-medium text-gray-700 mb-2">No resources found</h3>
-                <p className="text-gray-500">Try different search criteria</p>
-              </motion.div>
-            )
+                      <div className="flex items-center justify-between">
+                        <motion.a
+                          href={doc.fileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          <FiEye className="mr-1" /> View
+                        </motion.a>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </>
           )}
         </motion.div>
 
